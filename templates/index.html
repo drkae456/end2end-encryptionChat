@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encrypted Chat Application</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .chat-box {
+            height: 400px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .chat-box .chat-message {
+            margin-bottom: 10px;
+            display: flex;
+        }
+        .chat-box .chat-message p {
+            padding: 10px;
+            border-radius: 15px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+        .chat-box .chat-message.sent {
+            justify-content: flex-end;
+        }
+        .chat-box .chat-message.sent p {
+            background-color: #007bff;
+            color: #fff;
+            border-bottom-right-radius: 0;
+        }
+        .chat-box .chat-message.received {
+            justify-content: flex-start;
+        }
+        .chat-box .chat-message.received p {
+            background-color: #f1f0f0;
+            border-bottom-left-radius: 0;
+        }
+        .username-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        #server-logs {
+            height: 400px;
+            overflow-y: scroll;
+            background: rgba(0, 0, 0, 0.884);
+            color: rgb(51, 255, 0);
+            padding: 10px;
+            font-size: 1.25em;
+            font-family: monospace;
+            white-space: pre-wrap;
+            border-radius: 5px;
+        }
+        #server-logs p {
+            margin: 0;
+        }
+        #server-logs strong {
+            color: rgb(47, 85, 255);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Chat Application</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" id="chat-header1">Chat Box 1</div>
+                    <div class="card-body">
+                        <div id="username-box1" class="username-box">
+                            <input type="text" id="username-input1" class="form-control" placeholder="Enter your username">
+                            <button id="set-username1" class="btn btn-primary mt-2">Set Username</button>
+                        </div>
+                        <div id="private-key-box1" style="display: none;">
+                            <p id="private-key1" class="mt-2"></p>
+                            <button id="regenerate-key1" class="btn btn-secondary btn-sm"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                        <div id="key-input1" class="input-group mb-3" style="display: none;">
+                            <input type="text" id="other-key1" class="form-control" placeholder="Enter the other chat's private key">
+                            <div class="input-group-append">
+                                <button id="confirm-key1" class="btn btn-primary">Confirm Key</button>
+                            </div>
+                        </div>
+                        <p id="key-status1"></p>
+                        <div id="chat-box1" style="display: none;">
+                            <div id="chat1" class="chat-box"></div>
+                            <div class="input-group mt-3">
+                                <input type="text" id="message1" class="form-control" placeholder="Enter your message">
+                                <div class="input-group-append">
+                                    <button id="send-message1" class="btn btn-primary">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header" id="chat-header2">Chat Box 2</div>
+                    <div class="card-body">
+                        <div id="username-box2" class="username-box">
+                            <input type="text" id="username-input2" class="form-control" placeholder="Enter your username">
+                            <button id="set-username2" class="btn btn-primary mt-2">Set Username</button>
+                        </div>
+                        <div id="private-key-box2" style="display: none;">
+                            <p id="private-key2" class="mt-2"></p>
+                            <button id="regenerate-key2" class="btn btn-secondary btn-sm"><i class="fas fa-sync-alt"></i></button>
+                        </div>
+                        <div id="key-input2" class="input-group mb-3" style="display: none;">
+                            <input type="text" id="other-key2" class="form-control" placeholder="Enter the other chat's private key">
+                            <div class="input-group-append">
+                                <button id="confirm-key2" class="btn btn-primary">Confirm Key</button>
+                            </div>
+                        </div>
+                        <p id="key-status2"></p>
+                        <div id="chat-box2" style="display: none;">
+                            <div id="chat2" class="chat-box"></div>
+                            <div class="input-group mt-3">
+                                <input type="text" id="message2" class="form-control" placeholder="Enter your message">
+                                <div class="input-group-append">
+                                    <button id="send-message2" class="btn btn-primary">Send</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <h3>Server Logs</h3>
+                <div id="server-logs"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+
