@@ -54,6 +54,8 @@ Copy code
 docker-compose up
 This will start two services:
 
+
+
 web: The Flask application.
 redis: A Redis service for real-time message management.
 Step 4: Access the Application
@@ -68,7 +70,11 @@ To stop the application, use:
 bash
 Copy code
 docker-compose down
-Application Structure
+
+```
+
+### Application Structure
+
 app.py: Flask server-side code.
 index.html: Front-end of the chat application.
 script.js: Contains the chat logic with encryption.
@@ -82,10 +88,11 @@ Bootstrap
 Redis
 Docker & Docker Compose
 License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the Apache License, Version 2
 
+```
 Contributing
-Feel free to fork this repository and submit pull requests if you'd like to improve the project.
+Feel free to use this project however you like, though if you need a software engineer, or anything, cybersecurity person, please hire me!!
 
 vbnet
 Copy code
@@ -96,7 +103,6 @@ Copy code
 - **Accessing the App**: Explains how to access the app on `localhost`.
 - **Stopping the App**: Instructions on how to stop the application.
 
-This README will guide users on how to run your encrypted chat application easily.
 
-Let me know if you need any further adjustments!
+
 ```
