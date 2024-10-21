@@ -90,19 +90,11 @@ Docker & Docker Compose
 License
 This project is licensed under the Apache License, Version 2
 
-```
+
 Contributing
 Feel free to use this project however you like, though if you need a software engineer, or anything, cybersecurity person, please hire me!!
 
-vbnet
-Copy code
-
-### Explanation:
-- **Prerequisites**: The user is instructed to install Docker and Docker Compose.
-- **Build & Run Instructions**: Clear steps on how to build the Docker image and run the application with Docker Compose are provided.
-- **Accessing the App**: Explains how to access the app on `localhost`.
-- **Stopping the App**: Instructions on how to stop the application.
 
 
 
-```
+
