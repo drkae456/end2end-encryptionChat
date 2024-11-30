@@ -1,15 +1,17 @@
 version: "3"
+
 services:
   web:
-    build: .
+    build:
+      context: .
     ports:
-      - "5000:5000"
-    volumes:
-      - .:/app
+      - "8080:8080"
     environment:
       - FLASK_ENV=development
+      - REDIS_URL=redis://redis:6379/0
     depends_on:
       - redis
+    command: gunicorn -w 4 -b 0.0.0.0:8080 app:app  # Adjust 'app:app' to match your Flask app entry point
 
   redis:
     image: "redis:alpine"
